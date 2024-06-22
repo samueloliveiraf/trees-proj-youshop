@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Plantar Múltiplas Árvores</h1>
+    <form method="post" action="{% url 'plant_trees' %}">
+        {% csrf_token %}
+        <div id="trees">
+            <div>
+                <label for="tree1">Nome da Árvore:</label>
+                <input type="text" id="tree1" name="trees[0][tree]" required><br>
+
+                <label for="latitude1">Latitude:</label>
+                <input type="text" id="latitude1" name="trees[0][latitude]" required><br>
+
+                <label for="longitude1">Longitude:</label>
+                <input type="text" id="longitude1" name="trees[0][longitude]" required><br>
+            </div>
+        </div>
+        <button type="button" onclick="addTree()">Adicionar outra árvore</button>
+        <button type="submit">Plantar Árvores</button>
+    </form>
+
+    <script>
+        let treeIndex = 1;
+
+        function addTree() {
+            const treeDiv = document.createElement('div');
+            treeDiv.innerHTML = `
+                <label for="tree${treeIndex}">Nome da Árvore:</label>
+                <input type="text" id="tree${treeIndex}" name="trees[${treeIndex}][tree]" required><br>
+
+                <label for="latitude${treeIndex}">Latitude:</label>
+                <input type="text" id="latitude${treeIndex}" name="trees[${treeIndex}][latitude]" required><br>
+
+                <label for="longitude${treeIndex}">Longitude:</label>
+                <input type="text" id="longitude${treeIndex}" name="trees[${treeIndex}][longitude]" required><br>
+            `;
+            document.getElementById('trees').appendChild(treeDiv);
+            treeIndex++;
+        }
+    </script>
+{% endblock %}

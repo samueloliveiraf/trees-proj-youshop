@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>User</h3>
+    <li>
+        {% if request.user.is_authenticated %}
+            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+                {% csrf_token %}
+            </form>
+            <a href="#" onclick="document.getElementById('logout-form').submit();">Sair</a>
+        {% endif %}
+    </li>
+     <a href="{% url 'plant_tree' %}">
+     <div class="card mt-5">
+        Planta uma árvore
+    </div>
+     </a>
+
+    <a href="">
+      <div class="card mt-5">
+        Planta multiplas árvores
+    </div>
+    </a>
+
+    <a href="{% url 'user_planted_trees' %}">
+      <div class="card mt-5">
+        Ver todas as minhas árvores plantadas
+    </div>
+    </a>
+
+{% endblock %}

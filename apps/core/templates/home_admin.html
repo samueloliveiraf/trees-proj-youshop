@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Admin</h3>
+     <li>
+        {% if request.user.is_authenticated %}
+            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+                {% csrf_token %}
+            </form>
+            <a href="#" onclick="document.getElementById('logout-form').submit();">Sair</a>
+        {% endif %}
+    </li>
+    <li>
+        <a href="{% url 'register_account' %}">Cadastrar uma Conta</a>
+    </li>
+    <li>
+        <a href="{% url 'register_user' %}">Cadastrar um Usuário</a>
+    </li>
+    <li>
+        <a href="{% url 'user_planted_trees_admin' %}">Vizualizar todas as plantadas pelo Grupo</a>
+    </li>
+{% endblock %}

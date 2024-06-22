@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Árvores plantadas por {{ request.user.email }}</h1>
+    <ul>
+        {% for tree in planted_trees %}
+            <li>{{ tree.tree }} - Idade: {{ tree.age }} anos</li>
+        {% empty %}
+            <li>Nenhuma árvore plantada por este usuário.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
