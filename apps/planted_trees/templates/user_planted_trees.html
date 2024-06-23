@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Árvores plantadas por {{ request.user.email }}</h1>
-    <ul>
-        {% for tree in planted_trees %}
-            <li>{{ tree.tree }} - Idade: {{ tree.age }} anos</li>
-        {% empty %}
-            <li>Nenhuma árvore plantada por este usuário.</li>
-        {% endfor %}
-    </ul>
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h3 class="mb-4">Árvores Plantadas</h3>
+        <ul class="list-group w-75">
+            {% for tree in planted_trees %}
+                <li class="list-group-item">
+                    User: {{ tree.user }} - Árvore: {{ tree.tree }} - Idade: {{ tree.age }} ano{% if tree.age > 1 %}s{% endif %}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-center">Nenhuma árvore plantada por este usuário.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

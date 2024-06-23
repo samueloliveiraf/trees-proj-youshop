@@ -3,19 +3,23 @@
 {% block title %}Usuários{% endblock %}
 
 {% block content %}
-    <h1>Todos os usuários ligados à minha conta {{ request.user.email }}</h1>
-    <ul>
-        {% for user in users %}
-            <li>
-                {{ user.email }} - <span id="status-{{ user.id }}">{{ user.is_active|yesno:"Ativo,Inativo" }}</span>
-                <button class="toggle-button" data-user-id="{{ user.id }}">
-                    {% if user.is_active %}Desativar{% else %}Ativar{% endif %}
-                </button>
-            </li>
-        {% empty %}
-            <li>Nenhum usuário para esta conta.</li>
-        {% endfor %}
-    </ul>
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h1 class="mb-4">Todos os usuários ligados à minha conta {{ request.user.email }}</h1>
+        <ul class="list-group w-75">
+            {% for user in users %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        {{ user.email }} - <span id="status-{{ user.id }}">{{ user.is_active|yesno:"Ativo,Inativo" }}</span>
+                    </div>
+                    <button class="btn btn-dark toggle-button" data-user-id="{{ user.id }}">
+                        {% if user.is_active %}Desativar{% else %}Ativar{% endif %}
+                    </button>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-center">Nenhum usuário para esta conta.</li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load bootstrap %}
+
 
 {% block content %}
     <h1>Plantar uma Árvore</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|bootstrap }}
         <button class="btn btn-dark" type="submit">Plantar Árvore</button>
     </form>
     {% for error in form.non_field_errors %}

@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+{% load bootstrap %}
 
 {% block title %}Registrar{% endblock %}
 {% block content %}
-    <p>Cadastrar-se</p>
-    <form method="POST" class="form-group">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-dark">Salvar</button>
-    </form>
+    <div class="card p-3 mt-5">
+        <p>Cadastrar-se</p>
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <button type="submit" class="btn btn-dark mt-3">Salvar</button>
+        </form>
+    </div>
 {% endblock %}

@@ -1,28 +1,31 @@
 {% extends "base.html" %}
+{% load bootstrap %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-   <div class="container-fluid">
-       <div class="row justify-content-center align-items-center" style="height: 100vh;">
-           <div class="col-md-4">
-               <div class="card">
-                   <div class="card-body">
-                       <h5 class="card-title">Informe seu login</h5>
-                       <form method="POST" class="">
-                           {% csrf_token %}
-                           {{ form.as_p }}
-                           <input type="hidden" name="next" value="{{ next }}"/>
-                           <button type="submit" class="btn btn-dark btn-block">Entrar</button>
-                           <div class="text-center mt-3">
-                               <a href="#" class="btn btn-link">
-                                   Esqueceu a senha?
-                               </a>
-                           </div>
-                       </form>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Informe seu login</h5>
+                        <form method="POST" class="">
+                            {% csrf_token %}
+                            {{ form|bootstrap }}
+                            <input type="hidden" name="next" value="{{ next }}"/>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-dark btn-block mt-3">Entrar</button>
+                            </div>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="{% url 'password_reset' %}" class="btn btn-link">
+                                Esqueceu a senha?
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

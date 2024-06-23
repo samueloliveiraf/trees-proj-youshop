@@ -2,11 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
 from .forms import AccountCreationForm, UserCreationForm
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 
 from .models import Account, User
 
 
+@login_required
 def register_account(request):
     if request.method == 'POST':
         form = AccountCreationForm(request.POST)
@@ -18,6 +19,7 @@ def register_account(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
+@login_required
 def register_user(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -29,6 +31,7 @@ def register_user(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
+@login_required
 def users_list(request):
     user = Account.objects.get(id=request.user.id)
     users = User.objects.filter(account=user)

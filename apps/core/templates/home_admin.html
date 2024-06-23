@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>Admin</h3>
-     <li>
-        {% if request.user.is_authenticated %}
-            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
-                {% csrf_token %}
-            </form>
-            <a href="#" onclick="document.getElementById('logout-form').submit();">Sair</a>
-        {% endif %}
-    </li>
-    <li>
-        <a href="{% url 'register_account' %}">Cadastrar uma Conta</a>
-    </li>
-    <li>
-        <a href="{% url 'register_user' %}">Cadastrar um Usuário</a>
-    </li>
-    <li>
-        <a href="{% url 'user_planted_trees_admin' %}">Vizualizar todas as plantadas pelo Grupo</a>
-    </li>
-    <li>
-        <a href="{% url 'users_list' %}">Vizualizar todos os usuários do Grupo</a>
-    </li>
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h3>Admin</h3>
+        <ul class="list-group w-50">
+            {% if request.user.is_authenticated %}
+                <li class="list-group-item text-center">
+                    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+                        {% csrf_token %}
+                    </form>
+                    <a href="#" onclick="document.getElementById('logout-form').submit();" class="btn btn-danger">Sair</a>
+                </li>
+            {% endif %}
+            <li class="list-group-item text-center">
+                <a href="{% url 'register_account' %}" class="btn btn-dark">Cadastrar uma Conta</a>
+            </li>
+            <li class="list-group-item text-center">
+                <a href="{% url 'register_user' %}" class="btn btn-dark">Cadastrar um Usuário</a>
+            </li>
+            <li class="list-group-item text-center">
+                <a href="{% url 'users_list' %}" class="btn btn-dark">Vizualizar todos os usuários</a>
+            </li>
+            <li class="list-group-item text-center">
+                <a href="{% url 'user_planted_trees_admin' %}" class="btn btn-dark">Vizualizar todas as plantas plantadas pelo Grupo</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
