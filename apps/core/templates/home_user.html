@@ -1,31 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>User</h3>
-    <li>
-        {% if request.user.is_authenticated %}
-            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
-                {% csrf_token %}
-            </form>
-            <a href="#" onclick="document.getElementById('logout-form').submit();">Sair</a>
-        {% endif %}
-    </li>
-     <a href="{% url 'plant_tree' %}">
-     <div class="card mt-5">
-        Planta uma árvore
+    <div class="d-flex flex-column align-items-center mt-5">
+        <h3>User</h3>
+        <ul class="list-group w-50">
+            {% if request.user.is_authenticated %}
+                <li class="list-group-item text-center">
+                    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+                        {% csrf_token %}
+                    </form>
+                    <a href="#" onclick="document.getElementById('logout-form').submit();" class="btn btn-danger">Sair</a>
+                </li>
+            {% endif %}
+            <li class="list-group-item text-center">
+                <a href="{% url 'plant_tree' %}" class="btn btn-dark">Planta uma árvore</a>
+            </li>
+            <li class="list-group-item text-center">
+                <a href="{% url 'user_planted_trees' %}" class="btn btn-dark">Ver todas as minhas árvores plantadas</a>
+            </li>
+        </ul>
     </div>
-     </a>
-
-    <a href="">
-      <div class="card mt-5">
-        Planta multiplas árvores
-    </div>
-    </a>
-
-    <a href="{% url 'user_planted_trees' %}">
-      <div class="card mt-5">
-        Ver todas as minhas árvores plantadas
-    </div>
-    </a>
-
 {% endblock %}
